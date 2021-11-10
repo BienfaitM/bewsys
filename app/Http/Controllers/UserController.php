@@ -132,4 +132,16 @@ class UserController extends Controller
         return redirect()->route('users.index')
                         ->with('success','User deleted successfully');
     }
+
+    public function search_user(Request $request){
+        $name = request('name');
+        $user_exist = User::where('name',$name)->count();
+
+        if($user_exist > 0){
+            return $this->show($name);
+        }else{
+            return redirect()->with('error_message','the record doesnt exist');
+        }
+    }
+
 }
