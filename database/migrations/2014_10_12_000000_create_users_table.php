@@ -13,6 +13,13 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
+
+        Schema::create('departments', function (Blueprint $table) {
+            $table->id();
+            $table->string('Department_Name');
+            $table->timestamps();
+        });
+        
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
