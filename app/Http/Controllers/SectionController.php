@@ -59,6 +59,9 @@ class SectionController extends Controller
     public function show($id)
     {
         //
+        $sections = Section::all();
+        // return view('/section', compact('sections))
+
     }
 
     /**
@@ -69,7 +72,8 @@ class SectionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $sections = Section::find($id);
+        // return view('sections.edit',compact('questions'));
     }
 
     /**

@@ -65,6 +65,10 @@ class QuestionController extends Controller
     public function show($id)
     {
         //
+        $questions = Question::all();
+
+        // return view('/questions',)
+
     }
 
     /**
@@ -75,7 +79,8 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $questions = Question::find($id);
+        // return view('questions.edit',compact('questions'));
     }
 
     /**
