@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Section;
+use App\Models\Question;
 class SectionController extends Controller
 {
     /**
@@ -111,4 +112,11 @@ class SectionController extends Controller
         $section->delete();
         return response()->json($section);
     }
+
+     //get Questions per session
+     public function Question_Score($score_id){
+         $question_session = Section::find($score_id)->question->all(['Description','Score_Category']);
+         return $question_session;
+     }
+
 }

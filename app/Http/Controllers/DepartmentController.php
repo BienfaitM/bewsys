@@ -13,7 +13,8 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        //
+        $departments = Department::orderBy('id','ASC')->get();
+        return response()->json($departments);
     }
 
     /**
@@ -34,7 +35,18 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'Department_Name' => 'required',
+        ]);
+        $department = new Department;
+        $department->id = $request->ID;
+        $department->Department_Name = $request->Department_Name;
+        try {
+            $department->save();
+            return response()->json($department);
+        }catch (\Illuminate\Database\QueryException $e){
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+        }
     }
 
     /**
@@ -45,7 +57,9 @@ class DepartmentController extends Controller
      */
     public function show($id)
     {
-        //
+        $departments = Department::all();
+
+        // return view('/department',)
     }
 
     /**
@@ -56,7 +70,8 @@ class DepartmentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $departments = Department::find($id);
+        // return view('departments.edit',compact('departments'));
     }
 
     /**
@@ -68,7 +83,19 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'Department_Name' => 'required',
+        ]);
+       
+        $departments = Department::whereId($request->id)->first();
+        $departments->Department_Name = $request-> Department_Name;
+        try{
+            $departments->save();
+            return response()->json($departments);
+
+        }catch (\Illuminate\Database\QueryException $e){
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+        }
     }
 
     /**
@@ -79,6 +106,8 @@ class DepartmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $departments = Department::findOrFail($id);
+        $question->delete();
+        return response()->json($departments);
     }
 }

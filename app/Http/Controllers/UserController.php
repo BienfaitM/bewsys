@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Score;
 use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
@@ -133,15 +134,51 @@ class UserController extends Controller
                         ->with('success','User deleted successfully');
     }
 
+
+
+    public function display_users_scores(){
+        $user_id = User::all();
+
+        #get sum scores for each User
+        foreach ($user as $s){
+            $total_score = $this->total_score($s->id);
+            $s['total'] = $total_score;
+        }
+        #get sum of all scores
+        $sum_all_scores = score::all()->sum('Values');
+        return view('users/scores',['users'=>$user_id,'all_scores'=>$sum_all_scores]);
+
+    }
+    
+    //get total score per Employee
+    public function total_scores($user_id){
+        $user_total_scores = User::find($user_id)->Score->sum('values');
+        return $user_total_scores;
+    }
+    
+    #view a specific record 
+    public function display_user_info($user_id){
+        $user = User::find($user_id)->score;
+        $user_name = User::find($user_id)->name;
+        $user_email = User::find($user_id)->email;
+        return view('/user_info',['user'=>$user,
+        'user_name'=>$user_name, 
+        'user_email'=>$user_email]);
+    }
+
+    //search for a User and return Scores
     public function search_user(Request $request){
+
         $name = request('name');
         $user_exist = User::where('name',$name)->count();
 
         if($user_exist > 0){
-            return $this->show($name);
+            return $this->display_user_info($name);
         }else{
             return redirect()->with('error_message','the record doesnt exist');
         }
     }
+
+
 
 }
