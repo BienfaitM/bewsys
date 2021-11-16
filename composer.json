@@ -12,9 +12,10 @@
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "laravel-frontend-presets/light-bootstrap": "^1.0",
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^3.0",
+        "laravel/ui": "^3.3",
         "laravelcollective/html": "^6.2",
         "spatie/laravel-permission": "^3.17"
     },
