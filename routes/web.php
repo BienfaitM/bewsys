@@ -30,15 +30,17 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::resource('sections', SectionController::class);
-    // Route::resource('scores',ScoreController:class);
-    // Route::resource('sections',SectionController:class);
-    // Route::resource('questions',QuestionController:class);
+    Route::resource('scores',ScoreController::class);
+    Route::resource('sections',SectionController::class);
+    Route::resource('questions',QuestionController::class);
+    Route::resource('user_info',UserController::class);
 
 
-    // Route::get('/all_users', 'UserController@display_user_scores');
-    // Route::resource('user_info',UserController:class);
-    // Route::get('/user/user_detail/{id},'UserController@display_user_info');
-    // Route::get('/student/search_user','UserController@search_user')
+
+    // Route::get('/all_users', 'UserController@display_users_scores');
+    // Route::resource('user_info',UserController::class);
+    // Route::get('/user/user_detail/{id}','UserController@display_user_info');
+    // Route::get('/student/search_user','UserController@search_user');
    
 
 });
