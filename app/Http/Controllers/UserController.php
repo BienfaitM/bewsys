@@ -140,7 +140,7 @@ class UserController extends Controller
         $user_id = User::all();
 
         #get sum scores for each User
-        foreach ($user as $s){
+        foreach ($user_id as $s){
             $total_score = $this->total_score($s->id);
             $s['total'] = $total_score;
         }

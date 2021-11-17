@@ -72,8 +72,7 @@ class ScoreController extends Controller
     public function show($id)
     {
         $score = Score::all();
-
-        // return view('/scores',)
+        // return view('/scores');
     }
 
     /**
