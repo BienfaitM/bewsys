@@ -6,6 +6,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\SectionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,8 +32,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::resource('sections', SectionController::class);
-    // Route::resource('scores',ScoreController:class);
-    // Route::resource('sections',SectionController:class);
+    Route::resource('departments',DepartmentController::class);
+    Route::resource('sections',SectionController::class);
     // Route::resource('questions',QuestionController:class);
 
 

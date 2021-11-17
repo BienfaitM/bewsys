@@ -16,7 +16,7 @@ class SectionController extends Controller
     {
         $sections = Section::orderBy('id', 'ASC')->get();
 
-        return response()->json($sections);
+        return view('sections.index',compact('sections'));
     }
 
     /**
