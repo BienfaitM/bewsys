@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Question;
+use App\Models\Score;
+use App\Http\Controllers\Controller;
+
 
 class ScoreController extends Controller
 {
@@ -13,7 +16,7 @@ class ScoreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $scores = Score::orderBy('id', 'ASC')->get();
 

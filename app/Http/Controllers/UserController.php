@@ -141,29 +141,37 @@ class UserController extends Controller
 
         #get sum scores for each User
         foreach ($user_id as $s){
-            $total_score = $this->total_score($s->id);
-            $s['total'] = $total_score;
+            $total_scores = $this->total_scores($s->id);
+            $s['total'] = $total_scores;
         }
         #get sum of all scores
         $sum_all_scores = score::all()->sum('Values');
-        return view('users/scores',['users'=>$user_id,'all_scores'=>$sum_all_scores]);
+        
+        return response()->json([$user_id,$sum_all_scores]);
+        // return view('users/scores',['users'=>$user_id,'all_scores'=>$sum_all_scores]);
 
     }
     
     //get total score per Employee
     public function total_scores($user_id){
-        $user_total_scores = User::find($user_id)->Score->sum('values');
+        $user_total_scores = User::find($user_id)->scores->sum('Values');
         return $user_total_scores;
     }
+
+   
+  
+
     
     #view a specific record 
     public function display_user_info($user_id){
-        $user = User::find($user_id)->score;
+        $user = User::find($user_id)->scores->sum('Values');
+
         $user_name = User::find($user_id)->name;
         $user_email = User::find($user_id)->email;
-        return view('/user_info',['user'=>$user,
-        'user_name'=>$user_name, 
-        'user_email'=>$user_email]);
+        return response()->json([$user,$user_email,$user_name]);
+        // return view('users/user_info',['user'=>$user,
+        // 'user_name'=>$user_name, 
+        // 'user_email'=>$user_email]);
     }
 
     //search for a User and return Scores
