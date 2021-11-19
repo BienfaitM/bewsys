@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\SectionController;
+use App\Http\Controllers\QuestionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +35,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('sections', SectionController::class);
     Route::resource('departments',DepartmentController::class);
     Route::resource('sections',SectionController::class);
-    // Route::resource('questions',QuestionController:class);
+    Route::resource('questions',QuestionController::class);
 
 
     // Route::get('/all_users', 'UserController@display_user_scores');

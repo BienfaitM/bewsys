@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Question;
+use App\Models\Section;
 
 class QuestionController extends Controller
 {
@@ -17,7 +18,7 @@ class QuestionController extends Controller
     
         $questions = Question::with('section')->orderBy('id', 'ASC')->get();
 
-        return response()->json($questions);
+       return view('questions.index',compact('questions'));
     }
 
     /**
@@ -27,7 +28,10 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        //
+    //    $sections = Section::orderBy('id', 'ASC')->get();
+      $sections = Section::pluck('Section_Name', 'id');
+
+        return view('questions.create',compact('sections'));
     }
 
     /**

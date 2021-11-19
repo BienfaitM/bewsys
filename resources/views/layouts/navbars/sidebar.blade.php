@@ -58,8 +58,8 @@ Tip 2: you can also add an image using data-image tag
                     <p>{{ __("Sections") }}</p>
                 </a>
             </li>
-            <li class="nav-item @if($activePage == 'icons') active @endif">
-                <a class="nav-link" href="{{route('page.index', 'icons')}}">
+            <li class="nav-item @if($activePage == 'questions') active @endif">
+                <a class="nav-link" href="{{route('questions.index', 'Questions')}}">
                     <i class="nc-icon nc-atom"></i>
                     <p>{{ __("Performance Questions") }}</p>
                 </a>
