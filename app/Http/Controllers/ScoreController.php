@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use App\Question;
+use App\Models\Question;
+use App\Models\Score;
+
 
 class ScoreController extends Controller
 {
@@ -17,7 +19,8 @@ class ScoreController extends Controller
     {
         $scores = Score::orderBy('id', 'ASC')->get();
 
-        return response()->json($scores);
+        return view('scores.index',compact('scores'));
+
     }
 
     /**
@@ -25,32 +28,17 @@ class ScoreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        $request->validate([
-            'Score_Name' => 'required',
-            'Question_Id' => 'required',
-            'User_Id' => 'required',
-            'Values' => 'required'
-        ]);
+ 
 
-        // check if the User_id exists
-        $user_exist = user::where('id','=', Input::post('User_Id'))->count();
-        $question_exist = question::where('id','=', Input::post('Question_Id'))->count();
-        $score = new Score;
-        $score->Score_Name = $request->Score_Name;
-        $score->Values = $request->Values;
-        $score->Question_Id = $resquest->Question_Id;
-        $score->User_Id= $resquest-> User_Id;
-       
-        try{
-            $score->save();
-            return response()->json($score);
-        } catch (\Illuminate\Database\QueryException $e) {
-            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+        public function create()
+        {
+        //    $sections = Section::orderBy('id', 'ASC')->get();
+          $questions = Question::pluck('Question_Category', 'id')->all();
+    
+            return view('scores.create',compact('questions'));
         }
-        return redirect('/fees')->with('message','Record saved successfully');
-    }
+    
+
 
     /**
      * Store a newly created resource in storage.
@@ -60,7 +48,21 @@ class ScoreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'Score_Name' => 'required',
+            'Question_Id' => 'required',
+            'Values' => 'required'
+        ]);
+        $score = Score::whereId($request->id)->first();
+        $score->Score_Name= $request->Score_Name;
+        $score->Values = $request->Values;
+        $score->Question_Id =$request->Question_Id;
+        try{
+           $score->save();
+            return response()->json($score);
+        } catch (\Illuminate\Database\QueryException $e) {
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+        }
     }
 
     /**
@@ -71,9 +73,8 @@ class ScoreController extends Controller
      */
     public function show($id)
     {
-        $score = Score::all();
-
-        // return view('/scores',)
+        $score = Score::find($id);
+        return response()->json($score);
     }
 
     /**
@@ -97,8 +98,7 @@ class ScoreController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-
+    //
         $request->validate([
             'Score_Name' => 'required',
             'Question_Id' => 'required',
@@ -130,4 +130,6 @@ class ScoreController extends Controller
         $score->delete();
         return response()->json($score);
     }
+
+
 }

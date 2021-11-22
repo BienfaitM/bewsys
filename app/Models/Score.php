@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Score extends Model
 {
     use HasFactory;
+
+    public function question()
+    {
+        return $this->hasOne('App\Models\Question', 'id', 'Question_id');
+    }
+
 }

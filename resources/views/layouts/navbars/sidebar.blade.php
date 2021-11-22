@@ -61,7 +61,13 @@ Tip 2: you can also add an image using data-image tag
             <li class="nav-item @if($activePage == 'questions') active @endif">
                 <a class="nav-link" href="{{route('questions.index', 'Questions')}}">
                     <i class="nc-icon nc-atom"></i>
-                    <p>{{ __("Performance Questions") }}</p>
+                    <p>{{ __("Questions") }}</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('scores.index', 'scores')}}">
+                    <i class="nc-icon nc-alien-33"></i>
+                    <p>{{ __("Scores") }}</p>
                 </a>
             </li>
             <!-- <li class="nav-item @if($activePage == 'maps') active @endif">
@@ -76,12 +82,7 @@ Tip 2: you can also add an image using data-image tag
                     <p>{{ __("Notifications") }}</p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link active bg-danger" href="{{route('page.index', 'upgrade')}}">
-                    <i class="nc-icon nc-alien-33"></i>
-                    <p>{{ __("Upgrade to PRO") }}</p>
-                </a>
-            </li> -->
+           -->
         </ul>
     </div>
 </div>

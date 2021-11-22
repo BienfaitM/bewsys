@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'departments', 'title' => 'Departments', 'navName' => 'Departments'])
+@extends('layouts.app', ['activePage' => 'scores', 'title' => 'Scores', 'navName' => 'Scores'])
 
 @section('content')
     <div class="content">
@@ -7,8 +7,8 @@
                 <div class="col-md-12">
                     <div class="card strpied-tabled-with-hover">
                         <div class="card-header ">
-                            <h4 class="card-title">Departments</h4>
-                            <a class="btn btn-success" href="{{ route('departments.create') }}"> Create New Departments</a>
+                            <h4 class="card-title">Scores</h4>
+                            <a class="btn btn-success" href="{{ route('scores.create') }}"> Create New Score</a>
 
                             <!-- <p class="card-category">Here is a subtitle for this table</p> -->
                         </div>
@@ -16,21 +16,29 @@
                             <table class="table table-hover table-striped">
                                 <thead>
                                     <th>Id</th>
-                                    <th>Department Name</th>
+                                    <th>Score Name</th>
+                                    <th>Score Value</th>
+                                    <th>Question</th>
+                                    
                                     <th>Actions</th>
                                 </thead>
                                 <tbody>
-                                @foreach( $departments as $department )
+                                @foreach( $scores as $score )
                                     <tr>
-                                        <td>{{$department->id}}</td>
-                                        <td>{{$department->Department_Name}}</td>
+                                        <td>{{$score->id}}</td>
+                                        <td>{{$score->Score_Name}}</td>
+                                        <td>{{$score->Values}}</td>
+                                        <td>{{$score->question->Question_Category}}</td>
                                         <td>
-                                            <a class="btn btn-info" href="{{ route('departments.show',$department->id) }}">Show</a>
-                                            <a class="btn btn-primary" href="{{ route('departments.edit',$department->id) }}">Edit</a>
-                                                {!! Form::open(['method' => 'DELETE','route' => ['departments.destroy', $department->id],'style'=>'display:inline']) !!}
+                                            <a class="btn btn-info" href="{{ route('scores.show',$score->id) }}">Show</a>
+                                            <a class="btn btn-primary" href="{{ route('scores.edit',$score->id) }}">Edit</a>
+                                                {!! Form::open(['method' => 'DELETE','route' => ['scores.destroy', $score->id],'style'=>'display:inline']) !!}
                                                     {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                                                 {!! Form::close() !!}
                                         </td>
+
+
+                                        
                          
                                     </tr>
                                 </tbody>

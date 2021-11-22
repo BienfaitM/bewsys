@@ -17,8 +17,9 @@ class QuestionController extends Controller
     {
     
         $questions = Question::with('section')->orderBy('id', 'ASC')->get();
+        return view('questions.index',compact('questions'));
+        // return response()->json($questions);
 
-       return view('questions.index',compact('questions'));
     }
 
     /**
@@ -43,18 +44,18 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'Description' => 'required',
-            'Score_Category' => 'required',
+            // 'Description' => 'required',
+            'Question_Category' => 'required',
             'Section_id' => 'required',
         ]);
        
         $question = new Question;
-        $question->Description = $request->Description;
-        $question->Score_Category = $request->Score_Category;
+        // $question->Description = $request->Description;
+        $question->Question_Category = $request->Question_Category;
         $question->Section_id = $request->Section_id;
         try{
             $question->save();
-            return response()->json($question);
+            return redirect()->route('questions.index');
         } catch (\Illuminate\Database\QueryException $e) {
             return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
         }
@@ -69,7 +70,8 @@ class QuestionController extends Controller
     public function show($id)
     {
         //
-        $questions = Question::all();
+        $questions = Question::find($id);
+        return response()->json($questions);
 
         // return view('/questions',)
 
@@ -98,13 +100,13 @@ class QuestionController extends Controller
     {
          $request->validate([
             'Description' => 'required',
-            'Score_Category' => 'required',
+            'Question_Category' => 'required',
             'Section_id' => 'required',
         ]);
        
        $question = Question::whereId($request->id)->first();
         $question->Description = $request->Description;
-        $question->Score_Category = $request->Score_Category;
+        $question->Question_Category = $request->Question_Category;
         $question->Section_id = $request->Section_id;
         try{
            $question->save();

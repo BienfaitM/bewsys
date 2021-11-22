@@ -45,7 +45,7 @@ class SectionController extends Controller
         $section->Section_Name = $request->Section_Name;
         try{
             $section->save();
-            return response()->json($section);
+                return redirect()->route('sections.index');
         } catch (\Illuminate\Database\QueryException $e) {
             return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
         }
@@ -60,8 +60,9 @@ class SectionController extends Controller
     public function show($id)
     {
         //
-        $sections = Section::all();
-        // return view('/section', compact('sections))
+        $sections = Section::find($id);
+        return response()->json($sections);
+        // return view('/section', compact('sections'));
 
     }
 
@@ -74,6 +75,7 @@ class SectionController extends Controller
     public function edit($id)
     {
         $sections = Section::find($id);
+        return response()->json($sections);
         // return view('sections.edit',compact('questions'));
     }
 

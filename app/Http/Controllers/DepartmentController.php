@@ -108,7 +108,7 @@ class DepartmentController extends Controller
     public function destroy($id)
     {
         $departments = Department::findOrFail($id);
-        $question->delete();
+        $departments->delete();
         return response()->json($departments);
     }
 }
