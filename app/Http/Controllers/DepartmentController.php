@@ -44,7 +44,7 @@ class DepartmentController extends Controller
         $department->Department_Name = $request->Department_Name;
         try {
             $department->save();
-            return response()->json($department);
+            return redirect()->route('departments.index');
         }catch (\Illuminate\Database\QueryException $e){
             return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
         }
@@ -92,7 +92,7 @@ class DepartmentController extends Controller
         $departments->Department_Name = $request-> Department_Name;
         try{
             $departments->save();
-            return response()->json($departments);
+            return redirect()->route('departments.index');
 
         }catch (\Illuminate\Database\QueryException $e){
             return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
@@ -109,6 +109,6 @@ class DepartmentController extends Controller
     {
         $departments = Department::findOrFail($id);
         $departments->delete();
-        return response()->json($departments);
+        return redirect()->route('departments.index');
     }
 }
