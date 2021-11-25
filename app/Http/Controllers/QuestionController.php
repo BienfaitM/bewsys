@@ -69,13 +69,44 @@ class QuestionController extends Controller
      */
     public function show($id)
     {
-        //
-        $questions = Question::find($id);
-        return response()->json($questions);
+        $question = Question::find($id);
+        $section = Question::find($id)->section;
+        return view('questions.show',compact('question'));
 
-        // return view('/questions',)
 
     }
+    // public function section_info($id){
+    //     $section = Section::find($id)->question;
+    //     $Section_Name = Section::find($id)->Section_name;
+    //     return response()->json([$section,$Section_Name]);
+    //     // $Description = Question::find($question_id)->Description;
+    //     // $Question_Category = Question::find($question_id)->Question_Category;
+    //     // return response()->json([$question,$Description,$Question_Category]);
+
+    // }
+    /*
+    public function question_section($id){
+        $question_section = Question::find($id)->sections;
+        return $question_section;
+    }
+    public function display_question_section(){
+
+        $question = Question::all();
+        foreach($question_id as $s){
+            $question_s = $this->question_section($s->id);
+
+        }
+        $all_question = section::all()->get('Section_Name');
+        return response()->json([$question_id,$all_question]);
+    }
+    public function question_info($question_id){
+        $question = Question::find($question_id)->sections->get();
+        $Description = Question::find($question_id)->Description;
+        $Question_Category = Question::find($question_id)->Question_Category;
+        return response()->json([$question,$Description,$Question_Category]);
+
+    }
+    */
 
     /**
      * Show the form for editing the specified resource.
@@ -126,7 +157,7 @@ class QuestionController extends Controller
     {
         $question = Question::findOrFail($id);
         $question->delete();
-        return response()->json($question);
+        return redirect()->route('questions.index');
     }
 }
 

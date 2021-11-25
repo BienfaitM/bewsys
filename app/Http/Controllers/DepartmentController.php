@@ -58,9 +58,8 @@ class DepartmentController extends Controller
      */
     public function show($id)
     {
-        $departments = Department::all();
-
-        // return view('/department',)
+        $department = Department::find($id);
+        return view('departments.show',compact('department'));
     }
 
     /**

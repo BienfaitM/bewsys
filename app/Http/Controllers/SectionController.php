@@ -61,8 +61,9 @@ class SectionController extends Controller
     {
         //
         $sections = Section::find($id);
-        return response()->json($sections);
-        // return view('/section', compact('sections'));
+        $questions = Section::find($id)->question;
+        // return response()->json([$sections,$questions]);
+        return view('sections.show', compact('sections','questions'));
 
     }
 
@@ -113,7 +114,10 @@ class SectionController extends Controller
         $section = Section::findOrFail($id);
         $section->delete();
         return response()->json($section);
+        // return redirect()->route('sections.index');
+
     }
+  
 
      //get Questions per session
      public function Question_Score($score_id){

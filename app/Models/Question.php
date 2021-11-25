@@ -13,6 +13,7 @@ class Question extends Model
     public function section()
     {
         return $this->hasOne('App\Models\Section', 'id', 'Section_id');
+        
     }
 
 
