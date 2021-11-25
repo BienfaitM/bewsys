@@ -32,7 +32,6 @@
             <th>Description</th>
         </thead>
         <tbody>
-            @foreach($sections as $section)
                 @foreach($questions as $question)
                     <tr> 
                         <td>{{$question->id}}</td>
@@ -41,7 +40,6 @@
                     </tr>
                 @endforeach
         </tbody>
-        @endforeach
 
     </table>
 </div>
