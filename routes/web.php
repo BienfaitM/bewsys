@@ -40,10 +40,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('scores',ScoreController::class);
 
 
-    // Route::get('/all_users', 'UserController@display_user_scores');
-    // Route::resource('user_info',UserController:class);
-    // Route::get('/user/user_detail/{id},'UserController@display_user_info');
-    // Route::get('/student/search_user','UserController@search_user')
+
    
 
 });

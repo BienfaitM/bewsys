@@ -71,7 +71,8 @@ class DepartmentController extends Controller
     public function edit($id)
     {
         $departments = Department::find($id);
-        // return view('departments.edit',compact('departments'));
+        // return response()->json($departments);
+        return view('departments.edit',compact('departments'));
     }
 
     /**
