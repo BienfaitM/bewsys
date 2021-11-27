@@ -70,19 +70,21 @@ Tip 2: you can also add an image using data-image tag
                     <p>{{ __("Scores") }}</p>
                 </a>
             </li>
+
+               <li class="nav-item @if($activePage == 'evaluation') active @endif">
+                <a class="nav-link" href="{{route('evaluation.create', 'evalaution')}}">
+                <i class="nc-icon nc-bullet-list-67"></i>
+                    <p>{{ __(" Evaluation") }}</p>
+                </a>
+            </li>
             <!-- <li class="nav-item @if($activePage == 'maps') active @endif">
                 <a class="nav-link" href="{{route('page.index', 'maps')}}">
                     <i class="nc-icon nc-pin-3"></i>
                     <p>{{ __("Maps") }}</p>
                 </a>
             </li> -->
-            <!-- <li class="nav-item @if($activePage == 'notifications') active @endif">
-                <a class="nav-link" href="{{route('page.index', 'notifications')}}">
-                    <i class="nc-icon nc-bell-55"></i>
-                    <p>{{ __("Notifications") }}</p>
-                </a>
-            </li>
-           -->
+         
+           
         </ul>
     </div>
 </div>

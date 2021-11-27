@@ -10,6 +10,8 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\ScoreController;
+use App\Http\Controllers\PerformanceAnswersController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -38,9 +40,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('sections',SectionController::class);
     Route::resource('questions',QuestionController::class);
     Route::resource('scores',ScoreController::class);
+    Route::resource('evaluation',PerformanceAnswersController::class);
 
 
-    // Route::get('/all_users', 'UserController@display_user_scores');
     // Route::resource('user_info',UserController:class);
     // Route::get('/user/user_detail/{id},'UserController@display_user_info');
     // Route::get('/student/search_user','UserController@search_user')

@@ -23,6 +23,23 @@ class ScoreController extends Controller
 
     }
 
+
+
+    public function questions()
+    {
+    //    $scores = DB::table('scores')
+    //     ->join('questions','scores.question_id','questions.id')
+    //     ->select('Question_Category')
+    //     ->groupBy('Question_id')
+    //     ->get();
+
+
+         $scores = Score::with('question')->orderBy('id', 'ASC')->get();
+
+            return response()->json($scores);
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -48,18 +65,20 @@ class ScoreController extends Controller
      */
     public function store(Request $request)
     {
+        
         $request->validate([
             'Score_Name' => 'required',
-            'Question_Id' => 'required',
-            'Values' => 'required'
+            'Question_id' => 'required',
+            'Values' => 'required',
         ]);
-        $score = Score::whereId($request->id)->first();
-        $score->Score_Name= $request->Score_Name;
-        $score->Values = $request->Values;
-        $score->Question_Id =$request->Question_Id;
+       
+        $scores = new Score;
+        $scores->Score_Name = $request->Score_Name;
+        $scores->Question_id = $request->Question_id;
+        $scores->Values = $request->Values;
         try{
-           $score->save();
-            return response()->json($score);
+            $scores->save();
+            return redirect()->route('scores.index');
         } catch (\Illuminate\Database\QueryException $e) {
             return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
         }

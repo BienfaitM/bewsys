@@ -22,6 +22,24 @@ class QuestionController extends Controller
 
     }
 
+    public function perfomance()
+    {
+    
+        $questions = Question::with('section','scores')->orderBy('id', 'ASC')->get();
+
+        return view('peformance_evaluation.questions',compact('questions'));
+        
+        // return response()->json($questions);
+
+
+
+    }
+
+
+
+
+
+
     /**
      * Show the form for creating a new resource.
      *

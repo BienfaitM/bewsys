@@ -16,6 +16,11 @@ class Question extends Model
         
     }
 
+    public function scores()
+    {
+        return $this->hasMany('App\Models\Score', 'Question_id', 'id');
+    }
+
 
 
 }
