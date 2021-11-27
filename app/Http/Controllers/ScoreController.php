@@ -51,8 +51,7 @@ class ScoreController extends Controller
         {
         //    $sections = Section::orderBy('id', 'ASC')->get();
           $questions = Question::pluck('Question_Category', 'id')->all();
-    
-            return view('scores.create',compact('questions'));
+          return view('scores.create',compact('questions'));
         }
     
 
