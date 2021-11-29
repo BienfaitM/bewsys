@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-
+@extends('layouts.app', ['activePage' => 'Roles', 'title' => 'BEWSYS', 'navName' => 'Roles'])
 @section('content')
 <div class="row">
     <div class="col-lg-12 margin-tb">
@@ -27,7 +25,7 @@
   <tr>
      <th>No</th>
      <th>Name</th>
-     <th width="280px">Action</th>
+     <th>Action</th>
   </tr>
     @foreach ($roles as $key => $role)
     <tr>
@@ -50,7 +48,6 @@
 
 
 {!! $roles->render() !!}
-
 
 <p class="text-center text-primary"><small> </small></p>
 @endsection

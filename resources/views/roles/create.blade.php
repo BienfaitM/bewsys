@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['activePage' => 'Roles', 'title' => 'BEWSYS', 'navName' => 'Roles'])
 
 
 @section('content')

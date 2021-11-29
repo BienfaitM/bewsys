@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['activePage' => 'Roles', 'title' => 'BEWSYS', 'navName' => 'Roles'])
 
 
 @section('content')
@@ -53,4 +53,3 @@
 
 
 @endsection
-<p class="text-center text-primary"><small>Tutorial by ItSolutionStuff.com</small></p>
