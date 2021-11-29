@@ -43,14 +43,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('evaluation',PerformanceAnswersController::class);
 
 
-<<<<<<< HEAD
-    // Route::resource('user_info',UserController:class);
-    // Route::get('/user/user_detail/{id},'UserController@display_user_info');
-    // Route::get('/student/search_user','UserController@search_user')
-=======
-
->>>>>>> 90d6305121d514e270255074cf00c1443900233e
-   
 
 });
 Auth::routes();
