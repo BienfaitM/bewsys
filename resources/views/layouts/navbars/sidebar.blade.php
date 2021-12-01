@@ -17,7 +17,7 @@ Tip 2: you can also add an image using data-image tag
                     <p>{{ __("Dashboard") }}</p>
                 </a>
             </li>
-           
+           @if(Auth()->user()->role_id ==1 )
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#laravelExamples" aria-expanded="false">
                     <i>
@@ -52,6 +52,8 @@ Tip 2: you can also add an image using data-image tag
                 </div>
             </li>
 
+            @endif
+            @if(Auth()->user()->role_id !=2 )
             <li class="nav-item @if($activePage == 'departments') active @endif">
                 <a class="nav-link" href="{{route('departments.index', 'departments')}}">
                     <i class="nc-icon nc-notes"></i>
@@ -76,6 +78,8 @@ Tip 2: you can also add an image using data-image tag
                     <p>{{ __("Scores") }}</p>
                 </a>
             </li>
+
+            @endif
 
                <li class="nav-item @if($activePage == 'evaluation') active @endif">
                 <a class="nav-link" href="{{route('evaluation.create', 'evalaution')}}">
