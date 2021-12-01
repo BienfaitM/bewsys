@@ -5,24 +5,65 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\PerformanceAnswers;
 use App\Models\Question;
+use App\Models\User;
+
 use Auth;
+use DB;
 
 
 
 class PerformanceAnswersController extends Controller
 {
+
+
+    public function display_users_scores(){
+
+
+        $scores = PerformanceAnswers::groupBy('user_id')
+        ->join('users','performance_answers.user_id','users.id')
+        ->selectRaw('sum(Score_value) as sum, name')
+        ->distinct('Question_id')
+        ->get();
+     
+        return view('peformance_evaluation.admin',compact('scores'));
+
+    }
+
+
+      //get total score per Employee
+      public function total_scores($user_id){
+        $user_total_scores = User::find($user_id)->performance_answers->sum('Score_value');
+        return $user_total_scores;
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    // public function index()
+    // {
+    //     $questions = PerformanceAnswers::whereuser_id(Auth()->user()->id)->with('scores')->orderBy('id', 'ASC')->get();
+         
+    //     return response()->json($questions);
+          
+    // }
+
+
     public function index()
     {
-        $questions = PerformanceAnswers::whereuser_id(Auth()->user()->id)->with('scores')->orderBy('id', 'ASC')->get();
-         
-        return response()->json($questions);
-          
+
+        $questions = DB::table('performance_answers')
+        ->join('scores','performance_answers.Score_value','scores.id')
+        ->select('Question_id', DB::raw('count(*) as total'))
+        ->groupBy('Question_id')
+        ->get();
+
     }
+
+
+  
+
 
     /**
      * Show the form for creating a new resource.
@@ -33,7 +74,7 @@ class PerformanceAnswersController extends Controller
     {
         $questions = Question::with('section','scores')->orderBy('id', 'ASC')->get();
 
-        return view('peformance_evaluation.questions',compact('questions'));
+        return view('peformance_evaluation.create',compact('questions'));
     }
 
     /**

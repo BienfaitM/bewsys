@@ -62,8 +62,10 @@
             <div class="card bg-c-blue order-card">
                 <div class="card-block">
                     <h6 class="m-b-20">Staff</h6>
-                    <h2 class="text-right"><i class="fa fa-users f-left"></i><span>486</span></h2>
-                    <a href="" class="btn btn-warning btn-block " style="color:white">{{ __('View More') }}</a>
+                    <h2 class="text-right"><i class="fa fa-users f-left"></i><span>{{$users}}</span></h2>
+                    @if(Auth()->user()->role_id !=2 )
+                    <a href="user" class="btn btn-warning btn-block " style="color:white">{{ __('View More') }}</a>
+                    @endif
                 </div>
             </div>
         </div>
@@ -72,8 +74,10 @@
             <div class="card bg-c-green order-card">
                 <div class="card-block">
                     <h6 class="m-b-20">Departments</h6>
-                    <h2 class="text-right"><i class="fa fa-folder f-left"></i><span>486</span></h2>
-                    <a href="" class="btn btn-warning btn-block " style="color:white">{{ __('View More') }}</a>
+                    <h2 class="text-right"><i class="fa fa-folder f-left"></i><span>{{$departments}}</span></h2>
+                    @if(Auth()->user()->role_id !=2 )
+                    <a href="departments" class="btn btn-warning btn-block " style="color:white">{{ __('View More') }}</a>
+                    @endif
                 </div>
             </div>
         </div>
@@ -82,8 +86,10 @@
             <div class="card bg-c-yellow order-card">
                 <div class="card-block">
                     <h6 class="m-b-20">Sections</h6>
-                    <h2 class="text-right"><i class="fa fa-file f-left"></i><span>486</span></h2>
-                    <a href="" class="btn btn-warning btn-block " style="color:white">{{ __('View More') }}</a>
+                    <h2 class="text-right"><i class="fa fa-file f-left"></i><span>{{$sections}}</span></h2>
+                    @if(Auth()->user()->role_id !=2 )
+                    <a href="sections" class="btn btn-warning btn-block " style="color:white">{{ __('View More') }}</a>
+                    @endif
                 </div>
             </div>
         </div>
@@ -92,8 +98,10 @@
             <div class="card bg-c-pink order-card">
                 <div class="card-block">
                     <h6 class="m-b-20">Responses</h6>
-                    <h2 class="text-right"><i class="fa fa-files-o f-left"></i><span>486</span></h2>
-                    <a href="" class="btn btn-warning btn-block " style="color:white">{{ __('View More') }}</a>
+                    <h2 class="text-right"><i class="fa fa-files-o f-left"></i><span>{{$responses}}</span></h2>
+                    @if(Auth()->user()->role_id !=2 )
+                    <a href="employee_performance" class="btn btn-warning btn-block " style="color:white">{{ __('View More') }}</a>
+                    @endif
                 </div>
             </div>
         </div>

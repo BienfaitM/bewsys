@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Department;
+use App\Models\Section;
+use App\Models\PerformanceAnswers;
+
 
 class HomeController extends Controller
 {
@@ -23,6 +28,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+
+        $users=User::count();
+        $departments=Department::count();
+        $sections=Section::count();
+        $responses=PerformanceAnswers::count();
+
+
+        return view('dashboard',compact('users','departments','sections','responses'));
     }
 }
