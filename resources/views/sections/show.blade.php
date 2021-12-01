@@ -35,7 +35,7 @@
                 @foreach($questions as $question)
                     <tr> 
                         <td>{{$question->id}}</td>
-                        <td>{{$question->Question_Category}}</td>
+                        <td>{{$question->Score_Category}}</td>
                         <td>{{$question->Description}}</td>         
                     </tr>
                 @endforeach
