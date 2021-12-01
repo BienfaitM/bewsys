@@ -1,9 +1,13 @@
-@extends('layouts.app', ['activePage' => 'Roles', 'title' => 'BEWSYS', 'navName' => 'Roles'])
+@extends('layouts.app', ['activePage' => 'Roles', 'title' => 'BEWSYS', 'navName' => 'Role Management'])
 @section('content')
+
+<div class="content">
+<div class="container-fluid">
 <div class="row">
     <div class="col-lg-12 margin-tb">
+    <div class="card-body table-full-width table-responsive">
         <div class="pull-left">
-            <h2>Role Management</h2>
+            <h4>Roles</h4>
         </div>
         <div class="pull-right">
         @can('role-create')
@@ -11,6 +15,7 @@
             @endcan
         </div>
     </div>
+</div>
 </div>
 
 
@@ -20,13 +25,16 @@
     </div>
 @endif
 
-
-<table class="table table-bordered">
+<div class="card-body table-full-width table-responsive">
+<table class="table table-hover table-striped">
+<thead>
   <tr>
      <th>No</th>
      <th>Name</th>
      <th>Action</th>
   </tr>
+</thead>
+<tbody>
     @foreach ($roles as $key => $role)
     <tr>
         <td>{{ ++$i }}</td>
@@ -44,10 +52,13 @@
         </td>
     </tr>
     @endforeach
+</tbody>
 </table>
+</div>
+
 
 
 {!! $roles->render() !!}
-
-<p class="text-center text-primary"><small> </small></p>
+</div>
+</div>
 @endsection

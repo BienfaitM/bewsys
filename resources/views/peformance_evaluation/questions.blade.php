@@ -64,7 +64,7 @@
 </tr>
 
 <tr>
-<td>{{$question->Question_Category}}</td>
+<td>{{$question->Score_Category}}</td>
 @foreach ($question->scores as $score)  
 <td>
 {{$score->Description}} 

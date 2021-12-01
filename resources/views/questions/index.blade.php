@@ -27,7 +27,7 @@
                                     <tr>
                                         <!-- <td>{{$question->id}}</td>
                                         <td>{{$question->Description}}</td> -->
-                                        <td>{{$question->Question_Category}}</td>
+                                        <td>{{$question->Score_Category}}</td>
                                         <td>{{$question->section->Section_Name}}</td>
                                         <td>
                                             <a class="btn btn-info" href="{{ route('questions.show',$question->id) }}">Show</a>

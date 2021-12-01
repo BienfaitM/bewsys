@@ -63,13 +63,13 @@ class QuestionController extends Controller
     {
         $request->validate([
             // 'Description' => 'required',
-            'Question_Category' => 'required',
+            'Score_Category' => 'required',
             'Section_id' => 'required',
         ]);
        
         $question = new Question;
         // $question->Description = $request->Description;
-        $question->Question_Category = $request->Question_Category;
+        $question->Score_Category = $request->Score_Category;
         $question->Section_id = $request->Section_id;
         try{
             $question->save();
@@ -118,13 +118,13 @@ class QuestionController extends Controller
     {
          $request->validate([
             'Description' => 'required',
-            'Question_Category' => 'required',
+            'Score_Category' => 'required',
             'Section_id' => 'required',
         ]);
        
        $question = Question::whereId($request->id)->first();
         $question->Description = $request->Description;
-        $question->Question_Category = $request->Question_Category;
+        $question->Score_Category = $request->Score_Category;
         $question->Section_id = $request->Section_id;
         try{
            $question->save();

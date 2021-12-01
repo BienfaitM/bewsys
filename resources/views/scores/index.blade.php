@@ -28,7 +28,7 @@
                                         <td>{{$score->id}}</td>
                                         <td>{{$score->Score_Name}}</td>
                                         <td>{{$score->Values}}</td>
-                                        <td>{{$score->question->Question_Category}}</td>
+                                        <td>{{$score->question->Score_Category}}</td>
                                         <td>
                                             <a class="btn btn-info" href="{{ route('scores.show',$score->id) }}">Show</a>
                                             <a class="btn btn-primary" href="{{ route('scores.edit',$score->id) }}">Edit</a>
