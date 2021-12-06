@@ -92,8 +92,7 @@ class ScoreController extends Controller
     public function show($id)
     {
         $scores = Score::find($id);
-        $questions = Question::find($id)->question;
-        return view('scores.show',compact('scores','questions'));
+        return view('scores.show',compact('scores'));
     }
 
     /**

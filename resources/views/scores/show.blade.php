@@ -31,7 +31,6 @@
             <th>Score Name</th>
             <th>Description</th>
             <th>Value</th>
-            <th>Question</th>
         </thead>
         <tbody>
             <tr> 
@@ -39,7 +38,7 @@
                 <td>{{$scores->Score_Name}}</td>
                 <td>{{$scores->Description}}</td> 
                 <td>{{$scores->Values}}</td>  
-                <td>{{$scores->Question_Category}}</td>
+
     
             </tr>
 
