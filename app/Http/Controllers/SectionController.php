@@ -112,8 +112,7 @@ class SectionController extends Controller
     {
         $section = Section::findOrFail($id);
         $section->delete();
-        return response()->json($section);
-        // return redirect()->route('sections.index');
+        return redirect()->route('sections.index');
 
     }
   

@@ -56,7 +56,7 @@
                   <label class="col-sm-2 col-form-label">{{ __('Question:') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"  id="input-name" type="text" value="{{$question->Question_Category}}" required="true" aria-required="true" readonly/>
+                      <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"  id="input-name" type="text" value="{{$question->Score_Category}}" required="true" aria-required="true" readonly/>
                       @if ($errors->has('name'))
                         <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('name') }}</span>
                       @endif
