@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Edit Section</h2>
+            <h4>Edit Section</h4>
         </div>
         <div class="pull-right">
             <a class="btn btn-primary" href="{{ route('sections.index') }}"> Back</a>

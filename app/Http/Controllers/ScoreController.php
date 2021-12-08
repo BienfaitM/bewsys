@@ -103,8 +103,8 @@ class ScoreController extends Controller
      */
     public function edit($id)
     {
-        $score = Score::find($id);
-        // return view('score.edit',compact('scores'));
+        $scores = Score::find($id);
+        return view('scores.edit',compact('scores'));
     }
 
     /**
