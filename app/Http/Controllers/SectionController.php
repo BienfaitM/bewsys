@@ -76,7 +76,7 @@ class SectionController extends Controller
     public function edit($id)
     {
         $section = Section::find($id);
-        return view('sections.edit');
+        return view('sections.edit', compact('section'));
     }
 
     /**

@@ -1,7 +1,5 @@
 @extends('layouts.app', ['activePage' => 'Section Management', 'title' => 'Sections', 'navName' => 'Section Management'])
 
-
-
 @section('content')
 <div class="content">
     <div class="container-fluid">
@@ -29,7 +27,7 @@
 @endif
 
 
-<form action="{{route('section.update',$section->Section_Name)}}" method="POST">
+<form action="{{route('sections.update',$section->Section_Name)}}" method="POST">
 @csrf
 @method('PUT')
 
