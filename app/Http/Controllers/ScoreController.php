@@ -146,7 +146,7 @@ class ScoreController extends Controller
     {
         $score = Score::findOrFail($id);
         $score->delete();
-        return response()->json($score);
+        return view('scores.index',compact('score'));
     }
 
 
