@@ -59,7 +59,7 @@ class PerformanceAnswersController extends Controller
     public function display_section_scores(){
         $scores = PerformanceAnswers::groupBy('Question_id')
         ->join('questions','performance_answers.Question_id','Question_id')
-        ->selectRaw('Score_value ,name')
+        ->selectRaw('Score_value')
         ->distinct('user_id')
         ->get();
         
