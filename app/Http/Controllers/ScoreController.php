@@ -29,7 +29,7 @@ class ScoreController extends Controller
     {
     //    $scores = DB::table('scores')
     //     ->join('questions','scores.question_id','questions.id')
-    //     ->select('Score_Category')
+    //     ->select('Question_Category')
     //     ->groupBy('Question_id')
     //     ->get();
 
@@ -50,7 +50,7 @@ class ScoreController extends Controller
         public function create()
         {
         //    $sections = Section::orderBy('id', 'ASC')->get();
-          $questions = Question::pluck('Score_Category', 'id')->all();
+          $questions = Question::pluck('Question_Category', 'id')->all();
           return view('scores.create',compact('questions'));
         }
     

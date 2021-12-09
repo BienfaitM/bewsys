@@ -63,13 +63,13 @@ class QuestionController extends Controller
     {
         $request->validate([
             // 'Description' => 'required',
-            'Score_Category' => 'required',
+            'Question_Category' => 'required',
             'Section_id' => 'required',
         ]);
        
         $question = new Question;
         // $question->Description = $request->Description;
-        $question->Score_Category = $request->Score_Category;
+        $question->Question_Category = $request->Question_Category;
         $question->Section_id = $request->Section_id;
         try{
             $question->save();

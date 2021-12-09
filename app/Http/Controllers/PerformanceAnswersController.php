@@ -20,13 +20,41 @@ class PerformanceAnswersController extends Controller
 
 
         $scores = PerformanceAnswers::groupBy('user_id')
+        // ->select('performance_answers.created_at')
         ->join('users','performance_answers.user_id','users.id')
-        ->selectRaw('sum(Score_value) as sum, name')
+        // ->join('sections','performance_answers.Section_id','sections.id')
+        ->selectRaw('sum(Score_value) as sum, name,user_id')
+
+        ->get();
+     
+        // return response()->json($scores);
+        
+        return view('peformance_evaluation.admin',compact('scores'));
+
+    }
+
+
+
+
+    public function individualscores($id)
+    {
+
+
+        $scores = PerformanceAnswers::groupBy('user_id','Section_id')
+        ->where('performance_answers.user_id',$id)
+        ->join('users','performance_answers.user_id','users.id')
+        ->join('sections','performance_answers.Section_id','sections.id')
+        ->selectRaw('sum(Score_value) as sum, name,Section_name')
         ->distinct('Question_id')
         ->get();
      
+
         return view('peformance_evaluation.admin',compact('scores'));
 
+
+
+
+    
     }
 
 
@@ -91,6 +119,7 @@ class PerformanceAnswersController extends Controller
        
         $scores = new PerformanceAnswers;
         $scores->user_id = Auth()->user()->id;
+        $scores->Section_id = $request->Section_id;
         $scores->Question_id = $request->Question_id;
         $scores->Score_value = $request->Score_value;
         try{
@@ -109,7 +138,19 @@ class PerformanceAnswersController extends Controller
      */
     public function show($id)
     {
-        //
+     
+        $scores = PerformanceAnswers::groupBy('user_id','Section_id','created_at')
+        ->where('performance_answers.user_id',$id)
+        ->select('performance_answers.created_at')
+        ->join('users','performance_answers.user_id','users.id')
+        ->join('sections','performance_answers.Section_id','sections.id')
+        ->selectRaw('sum(Score_value) as sum, name,Section_name')
+        ->distinct('Question_id')
+        ->get();
+        // return response()->json($scores);
+
+        return view('peformance_evaluation.show',compact('scores'));
+     
     }
 
     /**

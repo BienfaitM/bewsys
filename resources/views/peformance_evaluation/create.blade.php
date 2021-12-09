@@ -44,7 +44,7 @@
                   <label class="col-sm-2 col-form-label">{{ __('Section Name') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" id="input-name" type="text" value="{{$question->section->Section_Name}}" required="true" aria-required="true" readonly/>
+                      <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" id="input-name" name="Section_id" type="text" value="{{$question->section->id}}" required="true" aria-required="true" readonly/>
                       @if ($errors->has('name'))
                         <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('name') }}</span>
                       @endif

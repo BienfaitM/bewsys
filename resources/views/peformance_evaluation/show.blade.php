@@ -8,6 +8,7 @@
                 <div class="col-md-12">
                     <div class="card strpied-tabled-with-hover">
                         <div class="card-header ">
+                            
                             <h4 class="card-title">Peformance Evaluation Scores</h4>
                             <!-- <a class="btn btn-success" href="{{ route('scores.create') }}"> Create New Score</a> -->
 
@@ -18,21 +19,21 @@
                                 <thead>
                                     <!-- <th>Id</th> -->
                                     <th>Employee Name</th>
-                                    <!-- <th>Section Name</th> -->
+                                    <th>Section Name</th>
                                     <th>Total Score</th>
-                                    <th> Actions</th>
+                                    <th> Date</th>
                           
                                     
                                     <!-- <th>Actions</th> -->
                                 </thead>
                                 <tbody>
-                                @foreach( $scores as $score )
+                                @foreach( $scores as $score ) 
                                     <tr>
                                         <!-- <td>{{$score->id}}</td> -->
                                         <td>{{$score->name}}</td>
-                                        <!-- <td>{{$score->Section_name}}</td> -->
+                                        <td>{{$score->Section_name}}</td>
                                         <td>{{$score->sum}}</td>
-                                        <td> <a  class="btn btn-info btn-block" href="{{ route('evaluation.show',$score->user_id) }}">View</a> </td>
+                                        <td>{{ $score->created_at->format('Y-m-d') }}</td>
   
                          
                                     </tr>
