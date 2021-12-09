@@ -11,7 +11,7 @@ class Score extends Model
 
     public function question()
     {
-        return $this->hasOne('App\Models\Question', 'id', 'Question_id');
+        return $this->hasOne('App\Models\Question', 'id', 'Question_id','Score_Category');
     }
 
 }

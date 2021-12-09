@@ -91,8 +91,8 @@ class ScoreController extends Controller
      */
     public function show($id)
     {
-        $score = Score::find($id);
-        return response()->json($score);
+        $scores = Score::find($id);
+        return view('scores.show',compact('scores'));
     }
 
     /**
@@ -103,8 +103,8 @@ class ScoreController extends Controller
      */
     public function edit($id)
     {
-        $score = Score::find($id);
-        // return view('score.edit',compact('scores'));
+        $scores = Score::find($id);
+        return view('scores.edit',compact('scores'));
     }
 
     /**
@@ -146,7 +146,7 @@ class ScoreController extends Controller
     {
         $score = Score::findOrFail($id);
         $score->delete();
-        return response()->json($score);
+        return view('scores.index',compact('score'));
     }
 
 

@@ -56,6 +56,16 @@ class PerformanceAnswersController extends Controller
 
     
     }
+    public function display_section_scores(){
+        $scores = PerformanceAnswers::groupBy('Question_id')
+        ->join('questions','performance_answers.Question_id','Question_id')
+        ->selectRaw('Score_value ,name')
+        ->distinct('user_id')
+        ->get();
+        
+        return view('peformance_evaluation.admin',compact('scores'));
+
+    }
 
 
       //get total score per Employee

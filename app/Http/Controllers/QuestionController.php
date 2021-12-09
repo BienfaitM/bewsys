@@ -48,7 +48,7 @@ class QuestionController extends Controller
     public function create()
     {
     //    $sections = Section::orderBy('id', 'ASC')->get();
-      $sections = Section::pluck('Section_Name', 'id');
+        $sections = Section::pluck('Section_Name', 'id');
 
         return view('questions.create',compact('sections'));
     }
@@ -88,7 +88,7 @@ class QuestionController extends Controller
     public function show($id)
     {
         $question = Question::find($id);
-        $section = Question::find($id)->section;
+        $sections = Section::pluck('Section_Name', 'id');
         return view('questions.show',compact('question'));
 
 
@@ -104,7 +104,9 @@ class QuestionController extends Controller
     public function edit($id)
     {
         $questions = Question::find($id);
-        // return view('questions.edit',compact('questions'));
+        $sections = Section::find('Section_Name','id');
+    
+        return view('questions.edit',compact('questions','sections'));
     }
 
     /**
@@ -122,10 +124,11 @@ class QuestionController extends Controller
             'Section_id' => 'required',
         ]);
        
-       $question = Question::whereId($request->id)->first();
+        $question = Question::whereId($request->id)->first();
         $question->Description = $request->Description;
         $question->Score_Category = $request->Score_Category;
         $question->Section_id = $request->Section_id;
+
         try{
            $question->save();
             return response()->json($question);

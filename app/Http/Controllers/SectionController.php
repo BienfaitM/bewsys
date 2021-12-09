@@ -76,7 +76,7 @@ class SectionController extends Controller
     public function edit($id)
     {
         $section = Section::find($id);
-        return view('sections.edit');
+        return view('sections.edit', compact('section'));
     }
 
     /**
@@ -112,8 +112,7 @@ class SectionController extends Controller
     {
         $section = Section::findOrFail($id);
         $section->delete();
-        return response()->json($section);
-        // return redirect()->route('sections.index');
+        return redirect()->route('sections.index');
 
     }
   

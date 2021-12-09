@@ -1,14 +1,12 @@
 @extends('layouts.app', ['activePage' => 'Section Management', 'title' => 'Sections', 'navName' => 'Section Management'])
 
-
-
 @section('content')
 <div class="content">
     <div class="container-fluid">
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Edit Section</h2>
+            <h4>Edit Section</h4>
         </div>
         <div class="pull-right">
             <a class="btn btn-primary" href="{{ route('sections.index') }}"> Back</a>
@@ -29,7 +27,7 @@
 @endif
 
 
-<form action="{{route('section.update',$section->Section_Name)}}" method="POST">
+<form action="{{route('sections.update',$section->Section_Name)}}" method="POST">
 @csrf
 @method('PUT')
 
