@@ -99,10 +99,6 @@ class PerformanceAnswersController extends Controller
 
     }
 
-
-  
-
-
     /**
      * Show the form for creating a new resource.
      *
@@ -171,7 +167,8 @@ class PerformanceAnswersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $performance_answers = PerformanceAnswers::find($id);
+        return view('peformance_evaluation.edit', compact('performance_answers'));
     }
 
     /**
@@ -183,7 +180,35 @@ class PerformanceAnswersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'Score_value'=>'required'
+
+        ]);
+        $performance_answers = PerformanceAnswers::whereId($request->id)->first();
+        $performance_answers->Score_value = $request->Score_value;
+
+        try{
+            $performance_answer->save();
+            return response()->json($performance_answers);
+        }catch (\Illuminate\Database\QueryException $e) {
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+        }
+
+    }
+
+
+    public function search_by_date(Request $request){
+        $created_date = Request('created_at');
+
+        $date_exist = PerformanceAnswers::where('created_at','=', $created_date)->count();
+
+        if($date_exist > 0){
+            return $this->show($created_date);
+            
+        }else{
+            return redirect('/')->with('error_message',
+            'The record Doesnt exist');
+        }
     }
 
     /**
@@ -194,6 +219,8 @@ class PerformanceAnswersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $performance_answers = PerformanceAnswers::findOrFail($id);
+        $performance_answers->delete();
+        return redirect()->route('peformance_evaluation.index');
     }
 }

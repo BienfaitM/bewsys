@@ -44,7 +44,7 @@ Route::group(['middleware' => ['auth']], function() {
 
 
     Route::get('employee_performance','App\Http\Controllers\PerformanceAnswersController@display_users_scores')->name('employee_performance');
-    // Route::get('employee_performance','App\Http\Controllers\PerformanceAnswersController@display_section_scores')->name('employee_performance');
+    Route::get('employee_performance/created_at','App\Http\Controllers\PerformanceAnswersController@search_by_date');
 
 
 
