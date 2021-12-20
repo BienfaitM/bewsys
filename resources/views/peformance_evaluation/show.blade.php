@@ -16,7 +16,7 @@
                         </div>
 
                         <ul class="nav navbar-nav navbar-right">
-                            <form style="color:green" method="get" action="employee_performance/created_at" class="form-inline">
+                            <form style="color:green" method="get" action="/search" class="form-inline">
                             {{csrf_field()}}
                             
                                 <input style="color:green" type="text" placeholder="Enter Date format('Y-m-d') " name="Date" class="form-control" required>

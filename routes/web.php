@@ -44,18 +44,18 @@ Route::group(['middleware' => ['auth']], function() {
 
 
     Route::get('employee_performance','App\Http\Controllers\PerformanceAnswersController@display_users_scores')->name('employee_performance');
-    Route::get('employee_performance/created_at','App\Http\Controllers\PerformanceAnswersController@search_by_date');
-
-
 
 
 });
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/search','App\Http\Controllers\PerformanceAnswersController@search_by_date');
+
 Auth::routes();
 
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('dashboard');
+
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
