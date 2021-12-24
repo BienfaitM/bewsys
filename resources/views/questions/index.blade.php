@@ -14,7 +14,7 @@
                             <!-- <p class="card-category">Here is a subtitle for this table</p> -->
                         </div>
                         <div class="card-body table-full-width table-responsive">
-                            <table class="table table-hover table-striped">
+                            <table id="performance_table" class="table">
                                 <thead>
                                     <!-- <th>Id</th>
                                     <th>Question</th> -->
@@ -48,4 +48,14 @@
             </div>
         </div>
     </div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#performance_table').DataTable();
+    });
+</script>
+
 @endsection

@@ -46,6 +46,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('employee_performance','App\Http\Controllers\PerformanceAnswersController@display_users_scores')->name('employee_performance');
     Route::get('employee_performance/created_at','App\Http\Controllers\PerformanceAnswersController@search_by_date');
 
+    Route::get('/export-pdf', [App\Http\Controllers\PerformanceAnswersController::class, 'exportPdf'])->name('export-pdf');
+
+    Route::get('/summary-pdf/{id}', [App\Http\Controllers\PerformanceAnswersController::class, 'summaryPdf'])->name('summary-pdf');
 
 
 

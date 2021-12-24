@@ -9,6 +9,7 @@ use App\Models\User;
 
 use Auth;
 use DB;
+use PDF;
 
 
 
@@ -158,6 +159,65 @@ class PerformanceAnswersController extends Controller
         return view('peformance_evaluation.show',compact('scores'));
      
     }
+
+
+
+
+    // public function exportPdf() {
+    //     $pdf = PDF::loadView('pdf.index'); // <--- load your view into theDOM wrapper;
+    //     $path = public_path('pdf_docs/'); // <--- folder to store the pdf documents into the server;
+    //     $fileName =  time().'.'. 'pdf' ; // <--giving the random filename,
+    //     $pdf->save($path . '/' . $fileName);
+    //     $generated_pdf_link = url('pdf_docs/'.$fileName);
+    //     return response()->json($generated_pdf_link);
+    // }
+
+
+    public function summaryPdf($id) {
+
+
+        $data = [
+            'title' => 'Welcome to ItSolutionStuff.com',
+            'date' => date('m/d/Y')
+        ];
+
+
+
+        $scores = PerformanceAnswers::groupBy('user_id','Section_id','created_at')
+        ->where('performance_answers.user_id',$id)
+        ->select('performance_answers.created_at')
+        ->join('users','performance_answers.user_id','users.id')
+        ->join('sections','performance_answers.Section_id','sections.id')
+        ->selectRaw('sum(Score_value) as sum, name,Section_name')
+        ->distinct('Question_id')
+        ->get();
+
+          
+        $pdf = PDF::loadView('pdf.individual', compact('scores'));
+    
+        return $pdf->download('Scores_summary.pdf');
+
+    }
+
+
+
+    public function exportPdf() {
+
+        $scores = PerformanceAnswers::groupBy('user_id','Section_id')
+        ->join('users','performance_answers.user_id','users.id')
+        ->join('sections','performance_answers.Section_id','sections.id')
+        ->selectRaw('sum(Score_value) as sum, name,Section_name')
+        ->distinct('Question_id')
+        ->get();
+          
+        $pdf = PDF::loadView('pdf.index', compact('scores'));
+    
+        return $pdf->download('Scores_summary.pdf');
+
+    }
+
+
+    
 
     /**
      * Show the form for editing the specified resource.

@@ -30,9 +30,42 @@
         <link href="{{ asset('light-bootstrap/css/light-bootstrap-dashboard.css?v=2.0.0') }} " rel="stylesheet" />
         <!-- CSS Just for demo purpose, don't include it in your project -->
         <link href="{{ asset('light-bootstrap/css/demo.css') }}" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-3.3.1.js" ></script>
+
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+
+
+
+        <link rel="stylesheet" type="text/css" href="/DataTables/datatables.css">
+
+<script type="text/javascript" charset="utf8" src="/DataTables/datatables.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
     </head>
 
     <body>
+
+    <script>
+  const export2Pdf = async () => {
+
+    let printHideClass = document.querySelectorAll('.print-hide');
+    printHideClass.forEach(item => item.style.display = 'none');
+    await fetch('http://localhost:8000/export-pdf', {
+      method: 'GET'
+    }).then(response => {
+      if (response.ok) {
+        response.json().then(response => {
+          var link = document.createElement('a');
+          link.href = response;
+          link.click();
+          printHideClass.forEach(item => item.style.display='');
+        });
+      }
+    }).catch(error => console.log(error));
+  }
+</script>
         <div class="wrapper @if (!auth()->check() || request()->route()->getName() == "") wrapper-full-page @endif">
 
             @if (auth()->check() && request()->route()->getName() != "")
@@ -69,6 +102,10 @@
     <script src="{{ asset('light-bootstrap/js/light-bootstrap-dashboard.js?v=2.0.0') }}" type="text/javascript"></script>
     <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
     <script src="{{ asset('light-bootstrap/js/demo.js') }}"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+
     @stack('js')
     <script>
       $(document).ready(function () {

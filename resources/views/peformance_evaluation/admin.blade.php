@@ -9,26 +9,16 @@
                     <div class="card strpied-tabled-with-hover">
                         <div class="card-header ">
                             <h4 class="card-title">Peformance Evaluation Scores</h4>
-                            <!-- <a class="btn btn-success" href="{{ route('scores.create') }}"> Create New Score</a> -->
+                            <div class="pull-right">
+                    <a class="btn btn-secondary" href="{{ route('export-pdf') }}"> Download</a>
+                </div>
 
-                            <!-- <p class="card-category">Here is a subtitle for this table</p> -->
                         </div>
 
-                        
-
-                        <ul class="nav navbar-nav navbar-right">
-                            <form style="color:green" method="get" action="employee_performance/created_at" class="form-inline">
-                            {{csrf_field()}}
-                            
-                                <input style="color:green" type="text" placeholder="Enter Date format('Y-m-d') " name="Date" class="form-control" required>
-                                <input  style="color:green" type="submit" value="Search" class="btn btn-primary">
-                            </form>
-                        </ul>
-
-
+                   
                         
                         <div class="card-body table-full-width table-responsive">
-                            <table class="table table-hover table-striped">
+                            <table id="evaluation_table" class="table table-hover table-striped">
                                 <thead>
                                     <!-- <th>Id</th> -->
                                     <th>Employee Name</th>
@@ -52,6 +42,8 @@
                                         <td> 
                                             <a  class="btn btn-info " href="{{ route('evaluation.show',$score->user_id) }}">View</a>
                                             <a  class="btn btn-primary" href="{{ route('evaluation.edit',$score->user_id) }}">Edit</a> 
+                                            <a  class="btn btn-success" href="{{ route('summary-pdf',$score->user_id) }}">Download</a> 
+
                                         </td>
 
   
@@ -67,4 +59,10 @@
             </div>
         </div>
     </div>
+
+    <script>
+    $(document).ready(function() {
+        $('#evaluation_table').DataTable();
+    });
+</script>
 @endsection

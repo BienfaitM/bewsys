@@ -1,6 +1,8 @@
 @extends('layouts.app', ['activePage' => 'scores', 'title' => 'Scores', 'navName' => 'Scores'])
 
 @section('content')
+
+
     <div class="content">
         <div class="container-fluid">
             <div class="row">
@@ -13,7 +15,7 @@
                             <!-- <p class="card-category">Here is a subtitle for this table</p> -->
                         </div>
                         <div class="card-body table-full-width table-responsive">
-                            <table class="table table-hover table-striped">
+                            <table id="scores_table"class="table table-hover table-striped">
                                 <thead>
                                     <th>Id</th>
                                     <th>Score Name</th>
@@ -51,4 +53,13 @@
             </div>
         </div>
     </div>
+
+    <script>
+
+$(document).ready( function () {
+    $('#scores_table').DataTable();
+} );
+
+</script>
+
 @endsection
