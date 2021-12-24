@@ -122,8 +122,13 @@ class PerformanceAnswersController extends Controller
     {
         $request->validate([
         'Score_value' => 'required',
+        'Section_id' => 'required',
+        'Question_id' => 'required',
+
+
         ]);
        
+        
         $scores = new PerformanceAnswers;
         $scores->user_id = Auth()->user()->id;
         $scores->Section_id = $request->Section_id;
@@ -131,7 +136,9 @@ class PerformanceAnswersController extends Controller
         $scores->Score_value = $request->Score_value;
         try{
             $scores->save();
+            // return redirect()->route('peformance_evaluation.index');
             return response()->json($scores);
+
         } catch (\Illuminate\Database\QueryException $e) {
             return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
         }
@@ -154,8 +161,8 @@ class PerformanceAnswersController extends Controller
         ->selectRaw('sum(Score_value) as sum, name,Section_name')
         ->distinct('Question_id')
         ->get();
-        // return response()->json($scores);
 
+        // return response()->json($scores);
         return view('peformance_evaluation.show',compact('scores'));
      
     }
@@ -249,11 +256,30 @@ class PerformanceAnswersController extends Controller
 
         try{
             $performance_answer->save();
-            return response()->json($performance_answers);
+            return redirect()->route('peformance_evaluation.index');
+
         }catch (\Illuminate\Database\QueryException $e) {
             return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
         }
 
+    }
+
+    public function report($id){
+        
+        $mpdf = new \Mpdf\Mpdf();
+
+        $mpdf->SetHeader('User Report | |');
+        $mpdf->SetFooter('User Report');
+
+        $mpdf->defaultheaderfontsize=10;
+        $mpdf->defaultheaderfontstyle='B';
+        $mpdf->defaultheaderline=0;
+        $mpdf->defaultfooterfontsize=10;
+        $mpdf->defaultfooterfontstyle='BI';
+        $mpdf->defaultfooterline=0;
+
+        $mpdf->WriteHTML('Document text');
+        $mpdf->Output();
     }
 
 
@@ -263,6 +289,7 @@ class PerformanceAnswersController extends Controller
         $date_exist = PerformanceAnswers::where('created_at','=', $created_date)->count();
 
         if($date_exist > 0){
+            // return view('peformance_evaluation.show',compact('created_date'));
             return $this->show($created_date);
             
         }else{

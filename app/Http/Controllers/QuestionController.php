@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Question;
 use App\Models\Section;
+use DataTables;
 
 class QuestionController extends Controller
 {
@@ -17,8 +18,20 @@ class QuestionController extends Controller
     {
     
         $questions = Question::with('section')->orderBy('id', 'ASC')->get();
-        return view('questions.index',compact('questions'));
         // return response()->json($questions);
+
+        if ($request->ajax()) {
+            return Datatables::of($questions)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+                        $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
+                        return $btn;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+        }
+        return view('questions.index',compact('questions'));
+
 
     }
 
@@ -90,6 +103,7 @@ class QuestionController extends Controller
         $question = Question::find($id);
         $sections = Section::pluck('Section_Name', 'id');
         return view('questions.show',compact('question'));
+        
 
 
     }
