@@ -49,3 +49,19 @@
         </div>
     </div>
 @endsection
+
+<script type="text/javascript">
+  $(function () {
+    var table = $('.data-table').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "{{ route('users.index') }}",
+        columns: [
+            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+            {data: 'name', name: 'Question Category'},
+            {data: 'email', name: 'Section'},
+            {data: 'action', name: 'Actions', orderable: false, searchable: false},
+        ]
+    });
+  });
+</script>

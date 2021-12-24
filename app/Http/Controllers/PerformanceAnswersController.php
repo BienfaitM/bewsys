@@ -164,7 +164,6 @@ class PerformanceAnswersController extends Controller
         ->get();
 
         // return response()->json($scores);
-    
         return view('peformance_evaluation.show',compact('scores'));
      
     }
