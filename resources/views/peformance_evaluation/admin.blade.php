@@ -22,7 +22,6 @@
                                     <!-- <th>Id</th> -->
                                     <th>Employee Name</th>
                                     <th>Total Score</th>
-                                    <th>Date</th>
                                     <th> Actions</th>
                           
                                     
@@ -36,14 +35,11 @@
                                         <td>{{$score->name}}</td>
                                         <!-- <td>{{$score->Section_name}}</td> -->
                                         <td>{{$score->sum}}</td>
-                                        <td>{{$score->created_at}}
-
                                         <td> 
                                             <a  class="btn btn-info " href="{{ route('evaluation.show',$score->user_id) }}">View</a>
                                             <a  class="btn btn-primary" href="{{ route('evaluation.edit',$score->user_id) }}">Edit</a> 
-                                        </td>
 
-  
+                                        </td>
                          
                                     </tr>
                                 </tbody>
