@@ -3712,31 +3712,6 @@
             "time": "2021-09-25T23:10:38+00:00"
         },
         {
-<<<<<<< HEAD
-            "name": "sabberworm/php-css-parser",
-            "version": "8.4.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sabberworm/PHP-CSS-Parser.git",
-                "reference": "e41d2140031d533348b2192a83f02d8dd8a71d30"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sabberworm/PHP-CSS-Parser/zipball/e41d2140031d533348b2192a83f02d8dd8a71d30",
-                "reference": "e41d2140031d533348b2192a83f02d8dd8a71d30",
-                "shasum": ""
-            },
-            "require": {
-                "ext-iconv": "*",
-                "php": ">=5.6.20"
-            },
-            "require-dev": {
-                "codacy/coverage": "^1.4",
-                "phpunit/phpunit": "^4.8.36"
-            },
-            "suggest": {
-                "ext-mbstring": "for parsing UTF-8 CSS"
-=======
             "name": "setasign/fpdi",
             "version": "v2.3.6",
             "source": {
@@ -3766,16 +3741,11 @@
             },
             "suggest": {
                 "setasign/fpdf": "FPDI will extend this class but as it is also possible to use TCPDF or tFPDF as an alternative. There's no fixed dependency configured."
->>>>>>> 15ed8a28a80aa0e175b0b3153d5d77fbc4f993ff
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-<<<<<<< HEAD
-                    "Sabberworm\\CSS\\": "src/"
-=======
                     "setasign\\Fpdi\\": "src/"
->>>>>>> 15ed8a28a80aa0e175b0b3153d5d77fbc4f993ff
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3784,23 +3754,6 @@
             ],
             "authors": [
                 {
-<<<<<<< HEAD
-                    "name": "Raphael Schweikert"
-                }
-            ],
-            "description": "Parser for CSS Files written in PHP",
-            "homepage": "https://www.sabberworm.com/blog/2010/6/10/php-css-parser",
-            "keywords": [
-                "css",
-                "parser",
-                "stylesheet"
-            ],
-            "support": {
-                "issues": "https://github.com/sabberworm/PHP-CSS-Parser/issues",
-                "source": "https://github.com/sabberworm/PHP-CSS-Parser/tree/8.4.0"
-            },
-            "time": "2021-12-11T13:40:54+00:00"
-=======
                     "name": "Jan Slabon",
                     "email": "jan.slabon@setasign.com",
                     "homepage": "https://www.setasign.com"
@@ -3829,7 +3782,6 @@
                 }
             ],
             "time": "2021-02-11T11:37:01+00:00"
->>>>>>> 15ed8a28a80aa0e175b0b3153d5d77fbc4f993ff
         },
         {
             "name": "spatie/laravel-permission",
