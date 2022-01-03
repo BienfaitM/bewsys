@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Models\Question;
 use App\Models\Score;
+use DataTables;
+
 
 
 class ScoreController extends Controller
@@ -18,7 +20,6 @@ class ScoreController extends Controller
     public function index()
     {
         $scores = Score::orderBy('id', 'ASC')->get();
-
         return view('scores.index',compact('scores'));
 
     }

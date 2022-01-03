@@ -6,6 +6,11 @@ use App\Models\User;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Arr;
+use DB;
+
 
 
 class UserController extends Controller
@@ -23,7 +28,7 @@ class UserController extends Controller
 
     public function create()
     {
-        $roles = Role::pluck('name','id');
+        $roles = Role::pluck('name','name')->all();
         return view('users.create',compact('roles'));
     }
 
@@ -35,13 +40,13 @@ class UserController extends Controller
             'password' => 'required|same:confirm-password',
             'roles' => 'required'
         ]);
-    
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
     
         $user = User::create($input);
         
         $user->assignRole($request->input('roles'));
+        
     
         return redirect()->route('users.index')
                         ->with('success','User created successfully');
@@ -85,7 +90,7 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
             'password' => 'same:confirm-password',
-            'roles' => 'required'
+            // 'roles' => 'required'
         ]);
     
         $input = $request->all();

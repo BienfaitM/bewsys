@@ -60,6 +60,18 @@
                 </div>
 
                 <div class="row">
+                  <label class="col-sm-2 col-form-label">{{ __('Confirm Password') }}</label>
+                  <div class="col-sm-7">
+                    <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
+                      <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="confirm-password" id="input-name" type="password" placeholder="{{ __('Confirm Password') }}" required="true" aria-required="true"/>
+                      @if ($errors->has('confirm-password'))
+                        <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('confirm-password') }}</span>
+                      @endif
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Roles') }}</label>
                   <div class="col-sm-7">
                     <select class="form-control" name="role_id">

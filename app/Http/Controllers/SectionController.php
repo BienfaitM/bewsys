@@ -26,7 +26,7 @@ class SectionController extends Controller
      */
     public function create()
     {
-   return view('sections.create');
+        return view('sections.create');
     }
 
     /**

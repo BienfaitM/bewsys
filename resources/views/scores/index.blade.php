@@ -57,7 +57,8 @@
     <script>
 
 $(document).ready( function () {
-    $('#scores_table').DataTable();
+    var table = $('#scores_table').DataTable();
+
 } );
 
 </script>
