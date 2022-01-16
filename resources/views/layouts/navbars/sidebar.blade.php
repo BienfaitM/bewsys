@@ -78,24 +78,57 @@ Tip 2: you can also add an image using data-image tag
                     <p>{{ __("Scores") }}</p>
                 </a>
             </li>
-
+<!-- 
             <li class="nav-item @if($activePage == 'evaluation') active @endif">
                 <a class="nav-link" href="{{route('employee_performance', 'evalaution')}}">
                 <i class="nc-icon nc-bullet-list-67"></i>
                     <p>{{ __(" Evaluation") }}</p>
                 </a>
-            </li>
+            </li> -->
 
             @endif
 
-            @if(Auth()->user()->role_id ==2 )
+            <!-- @if(Auth()->user()->role_id ==2 )
                <li class="nav-item @if($activePage == 'evaluation') active @endif">
                 <a class="nav-link" href="{{route('evaluation.create', 'evalaution')}}">
                 <i class="nc-icon nc-bullet-list-67"></i>
                     <p>{{ __(" Evaluation") }}</p>
                 </a>
             </li>
+            @endif -->
+
+
+
+            @if(Auth()->user()->role_id !=2 )
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#evaluate" aria-expanded="false">
+                <i class="nc-icon nc-bullet-list-67"></i>
+                    <p>
+                        {{ __('Evaluation') }}
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse"  id="evaluate">
+                    <ul class="nav">
+                        <li class="nav-item @if($activePage == 'evaluation') active @endif">
+                            <a class="nav-link" href="{{route('evaluation.create')}}">
+                                <i class="nc-icon nc-single-02"></i>
+                                <p>{{ __("Self Evaluation") }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item @if($activePage == 'evaluation') active @endif">
+                            <a class="nav-link" href="{{route('employee_performance')}}">
+                                <i class="nc-icon nc-circle-09"></i>
+                                <p>{{ __("Review Evaluation") }}</p>
+                            </a>
+                        </li>
+                       
+                    </ul>
+                </div>
+            </li>
+
             @endif
+
             <!-- <li class="nav-item @if($activePage == 'maps') active @endif">
                 <a class="nav-link" href="{{route('page.index', 'maps')}}">
                     <i class="nc-icon nc-pin-3"></i>

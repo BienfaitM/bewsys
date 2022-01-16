@@ -10,6 +10,7 @@ use App\Models\User;
 use Auth;
 use DB;
 use PDF;
+use Carbon\Carbon;
 
 
 
@@ -134,10 +135,11 @@ class PerformanceAnswersController extends Controller
         $scores->Section_id = $request->Section_id;
         $scores->Question_id = $request->Question_id;
         $scores->Score_value = $request->Score_value;
+        
         try{
             $scores->save();
-            // return redirect()->route('peformance_evaluation.index');
-            return response()->json($scores);
+            return redirect()->route('my_score_summary');
+            // return response()->json($scores);
 
         } catch (\Illuminate\Database\QueryException $e) {
             return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
@@ -165,6 +167,40 @@ class PerformanceAnswersController extends Controller
         // return response()->json($scores);
         return view('peformance_evaluation.show',compact('scores'));
      
+    }
+
+
+
+    public function getmyscore()
+    {
+
+        // $scores = PerformanceAnswers::with('questions','sections')->whereuser_id(Auth()->user()->id)->whereDate('created_at', Carbon::today())->selectRaw('sum(Score_value) as sum, name,user_id')->get();
+       
+        // return response()->json($scores);
+        // return view('peformance_evaluation.my_score_summary',compact('scores'));
+
+        // $scores = PerformanceAnswers::groupBy('user_id')
+        // ->select('performance_answers.created_at')
+        // ->join('users','performance_answers.user_id',Auth()->user()->id)
+    //    ->whereDate('created_at', Carbon::today())
+        // ->join('sections','performance_answers.Section_id','sections.id')
+        // ->selectRaw('sum(Score_value) as sum, name,user_id')
+
+        // ->get();
+
+
+
+        $scores = PerformanceAnswers::groupBy('user_id')
+        // ->select('performance_answers.created_at')
+        ->join('users','performance_answers.user_id','users.id')
+        // ->join('sections','performance_answers.Section_id','sections.id')
+        ->selectRaw('sum(Score_value) as sum, name,user_id')
+
+        ->get();
+
+             return view('peformance_evaluation.my_score_summary',compact('scores'));
+
+
     }
 
 

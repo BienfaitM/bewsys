@@ -16,4 +16,19 @@ class PerformanceAnswers extends Model
     }
 
 
+    public function questions()
+    {
+        return $this->hasOne('App\Models\Question', 'id', 'Question_id');
+        
+    
+    }
+
+
+    public function sections()
+    {
+        return $this->hasOne('App\Models\Section', 'id', 'Section_id');
+        
+    }
+
+
 }

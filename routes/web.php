@@ -41,7 +41,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('questions',QuestionController::class);
     Route::resource('scores',ScoreController::class);
     Route::resource('evaluation',PerformanceAnswersController::class);
+    
 
+    Route::get('my_score_summary','App\Http\Controllers\PerformanceAnswersController@getmyscore')->name('my_score_summary');
 
     Route::get('employee_performance','App\Http\Controllers\PerformanceAnswersController@display_users_scores')->name('employee_performance');
     Route::get('employee_performance/created_at','App\Http\Controllers\PerformanceAnswersController@search_by_date');

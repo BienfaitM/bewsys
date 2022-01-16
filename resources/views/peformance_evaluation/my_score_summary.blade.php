@@ -31,6 +31,7 @@
                                 <tbody>
                                     
                                 @foreach( $scores as $score )
+                                @if(Auth()->user()->id == $score->user_id)
                                     <tr>
                                         <!-- <td>{{$score->id}}</td> -->
                                         <td>{{$score->name}}</td>
@@ -48,6 +49,7 @@
                                         </td>
                          
                                     </tr>
+                                    @endif
                                 </tbody>
                                 @endforeach
                             </table>
