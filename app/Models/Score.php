@@ -14,4 +14,8 @@ class Score extends Model
         return $this->hasOne('App\Models\Question', 'id', 'Question_id','Score_Category');
     }
 
+    public function performeAnswers(){
+        return $this->belongsTo('App\Models\PerformanceAnswers', 'id','Score_value');
+    }
+
 }
